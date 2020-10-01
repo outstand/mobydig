@@ -1,42 +1,32 @@
 # mobydig
-Image to run Sysdig on Docker for mac (but not only, it should work on a docker engine on a linux host)
-#Why ?
-Why a particular image for Docker for mac ?
-Sysdig provides a Docker image to run sysdig/csysdig on Docker but on a Linux host. As the sources os Docker for mac are not yet avaliable, there is no easy way to use the DKMS build capability of the upstream image. Finally, I could not just publish an image to the Docker Hub as kernel are upgraded often on Docker for mac.
+Image to run Sysdig on Docker Desktop for mac (but not only, it should work on a docker engine on a linux host)
 
-Why that name ?
-Because some difficulties to reach my target comes from the fact that Docker for mac named the kernel linux-4.4.x-moby. And that particular name had me to search for a few trick on compiling kernel libs, so it's gonna be like a souvenir every time I get back to this project.
+# Note!
+
+This updated image is forked from: https://github.com/fdebonneval/mobydig
+
+# Why ?
+Why a particular image for Docker Desktop?
+
+Sysdig provides a Docker image to run sysdig/csysdig on Docker but on a Linux host. We can grab the [linuxkit kernel](https://hub.docker.com/r/docker/for-desktop-kernel) that Docker Desktop uses and build the sysdig eBPF probe.
 
 # Get it, build it
 
-    # git clone https://github.com/fdebonneval/mobydig.git
+    # git clone https://github.com/outstand/mobydig
     # cd mobydig
     # make build
 
-Build time is around 15 minutes with a decent internet access and my i5 MBP.
-After the build, the image is published in your local registry with the name `mobydig:(sysdig verion)`
-You can choose the tag/branch you want to build against by changing the VERSION variable in the Makefile
+After the build, the image is published in your local registry with the name `mobydig:dev`.
+You can choose the image tag with the VERSION variable in the Makefile.
 
 # And run it
 To run csysdig, the great htop like ncurses tool, just use
 
     # make csysdig
 
-To run sysdig, use 
+To run sysdig, use
 
     # make sysdig
 
-# Todo
-* Reduce image size. I gave a try to Alpine, but it seem there is an issue around Libc
-* Fix mouse inputs in spectro view
-* Write some examples
-
-
 # References
-* Thanks to @etown for his work on module build that inspired me a lot 
-  * https://github.com/etown/install-sysdig-module
-* Thanks to Sysdig team (@draios), thanks to the official image I found a few env that made the stuff work 
-  * http://www.sysdig.org/wiki/how-to-install-sysdig-from-the-source-code/
-  * http://www.sysdig.org/wiki/how-to-install-sysdig-for-linux/
-  * https://github.com/draios/sysdig/tree/dev/docker
-* Thanks to a very shy collegue of mine for his help on the rest
+* Thanks to @fdebonneval for the original image!
