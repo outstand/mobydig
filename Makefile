@@ -3,13 +3,6 @@ REPOSITORY ?= mobydig
 IMAGE      ?= $(REPOSITORY):$(VERSION)
 
 BUILD_OPTIONS = -t $(IMAGE)
-ifdef http_proxy
-BUILD_OPTIONS += --build-arg http_proxy=$(http_proxy)
-endif
-ifdef https_proxy
-BUILD_OPTIONS += --build-arg https_proxy=$(https_proxy)
-endif
-
 BUILD_OPTIONS += --progress=plain
 
 RUN_OPTIONS = --privileged 
