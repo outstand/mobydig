@@ -1,5 +1,5 @@
 # mobydig
-Image to run Sysdig on Docker Desktop for mac (but not only, it should work on a docker engine on a linux host)
+Image to run Sysdig on Docker Desktop for mac.
 
 # Note!
 
